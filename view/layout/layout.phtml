@@ -50,20 +50,21 @@ $userBar = $this->userBar();
     <?php echo $this->htmlElement('body'); ?>
         <div id="oc-container" class="oc-container">
             <div class="oc-pusher">
-                <?php echo $userBar; ?>
-                <header role="banner">
-                    <?php if ($this->themeSetting('logo')): ?>
-                    <a href="<?php echo $site->url(); ?>" class="site-title"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" title="Logo"></a>
-                    <?php else: ?>
-                    <a href="<?php echo $site->url(); ?>" class="site-title"><?php echo $this->pageTitle($site->title()); ?></a>
-                    <?php endif; ?>
-                    <?php echo $this->partial('common/search-form'); ?>
+                <header role="banner"  style="background-image: url('https://palp.p-lod.umasscreate.net/wp-content/uploads/2019/01/cropped-IMG_8771-2.jpg');background-position: center center"";>
                     <div id="oc-trigger">
                         <button id="menu-button" class="o-icon-menu" data-effect="oc-push" aria-label="<?php echo $this->translate('Menu'); ?>"></button>
                     </div>
                     <nav id="menu" class="oc-menu oc-push" role="navigation">
                         <?php echo $site->publicNav()->menu()->renderMenu(); ?>
                     </nav>
+                    <?php if ($this->themeSetting('logo')): ?>
+                    <a href="<?php echo $site->url(); ?>" class="site-title"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" title="Logo"></a>
+                    <?php else: ?>
+                    <span>&nbsp;&nbsp; </span>
+                    <a href="<?php echo $site->url(); ?>" class="site-title"><?php echo $this->pageTitle($site->title()); ?></a>
+                    <?php endif; ?>
+                    <?php echo $this->partial('common/search-form'); ?>
+
                 </header>
 
                 <main class="oc-content" role="main">
