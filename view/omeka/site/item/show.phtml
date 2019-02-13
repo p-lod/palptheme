@@ -32,10 +32,13 @@ $page = $this->params()->fromQuery('page', 1);
 $property = $this->params()->fromQuery('property');
 $subjectValues = $item->displaySubjectValues($page, 250, $property);
 ?>
+
 <?php if ($subjectValues): ?>
 <div id="item-linked">
-    <h3><?php echo $translate('Items that link to ');
-              echo $item->displayTitle(); ?></h3>
+<!--
+    <h4><?php echo $translate('Items that link to ');
+              echo $item->displayTitle(); ?>:</h4>
+-->
     <?php echo $subjectValues; ?>
 </div>
 <?php endif; ?>

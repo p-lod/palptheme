@@ -26,7 +26,7 @@ $pagination->setFragment($fragment);
 -->
 <?php foreach ($subjectValues as $term => $values): ?>
 <table>
-<caption class="linked-resource-property"><?php echo $escape($values[0]->property()->label()); ?></caption>
+<caption class="linked-resource-property" style="text-align:center">Links to this item by '<?php echo $escape($values[0]->property()->label()); ?>'</caption>
 <thead>
     <tr>
     <th><?php echo $this->translate('Title'); ?></th>
@@ -54,7 +54,7 @@ $pagination->setFragment($fragment);
  
         <td>
         <?php if ($pipUrl): ?>
-        <span class="alternate-label"><a href="<?php echo $pipUrl->uri(); ?>">link...</a></span>
+        <span class="alternate-label"><a target="_new" href="<?php echo $pipUrl->uri(); ?>">🔗</a></span>
         <?php endif; ?>
         </td>
 
