@@ -27,6 +27,32 @@ $itemMedia = $item->media();
 </div>
 <?php endif; ?>
 
+<div id="item-geojson" style="display:none"><?php
+echo $item->value('p-lod:geojson', ['type' => 'literal']);
+?></div>
+
+
+<div id="mapid" style="width: 800px; height: 600px;display:none"></div>
+<script>
+if ($('#item-geojson').html().trim()) {
+       $('#mapid').show()
+
+	var mymap = L.map('mapid').setView([40.75, 14.485], 16);
+
+	L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		maxZoom: 19,
+		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+       L.geoJSON(JSON.parse($('#item-geojson').html())).addTo(mymap)
+       
+}
+</script>
+
+
+
+
 <?php
 $page = $this->params()->fromQuery('page', 1);
 $property = $this->params()->fromQuery('property');
@@ -43,4 +69,4 @@ $subjectValues = $item->displaySubjectValues($page, 250, $property);
 </div>
 <?php endif; ?>
 
-<?php $this->trigger('view.show.after'); ?>
+<?php $this->trigger('view.show.:after'); ?>

@@ -11,6 +11,9 @@ $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
 $this->trigger('view.layout');
 $userBar = $this->userBar();
+
+//$sl = $this->getServiceLocator()->get('Omeka\EntityManager');
+
 ?>
 
 <?php echo $this->doctype(); ?>
@@ -21,6 +24,10 @@ $userBar = $this->userBar();
         <?php echo $this->headLink(); ?>
         <?php echo $this->headStyle(); ?>
         <?php if ($this->themeSetting('accent_color') !== '' || $this->themeSetting('nav_color') !== ''): ?>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+
         <style>
             <?php if ($accentColor = $this->themeSetting('accent_color')): ?>
             a {
@@ -45,6 +52,9 @@ $userBar = $this->userBar();
         </style>
         <?php endif; ?>
         <?php echo $this->headScript(); ?>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
     </head>
 
     <?php echo $this->htmlElement('body'); ?>
@@ -84,5 +94,15 @@ $userBar = $this->userBar();
             </div>
         </div>
         <script type="text/javascript" src="<?php echo $this->assetUrl('js/offcanvas.js'); ?>"></script>
+        <script type="text/javascript">
+          $(".property").has("h4:contains('Image URL')").find(".uri-value-link").each(function( index ) {
+            console.log('inside loop');
+            console.log(this.href);
+            img_src = this.href;
+            cur_html = this.innerHTML
+            this.innerHTML = "<img style=\"max-width:50%\" src=\""+img_src+"\"></img><br/>"+cur_html;
+           });
+        </script>
+
     </body>
 </html>
