@@ -50,6 +50,12 @@ if ($('#item-geojson').html().trim()) {
 }
 </script>
 
+<?php
+ $imgUrl =  $item->value('p-lod:image-url', ['type' => 'uri']);
+ if ($imgUrl): ?>
+<div id="pipimage"><img style="max-width:300px" src="<?php echo $imgUrl->uri();?>"></img></div>
+
+<?php endif; ?>
 
 
 
