@@ -83,6 +83,10 @@ $subjectValues = $item->displaySubjectValues($page, 250, $property);
 
 <?php
 
+$apiclass = $site->getServiceLocator()->get(HBrowser\Api\Adapter\GetChildren::class);
+
+echo $apiclass;
+
 # TEST DIRECT SQL QUERY
 
 $sql = <<<ENDSQL
