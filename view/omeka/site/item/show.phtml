@@ -140,19 +140,23 @@ $result = $connection->fetchAll($sql, $bind);
 $connection->close();
 
 
-echo '<pre style="">';
-echo print_r($result);
-echo '</pre>';
+# echo '<pre style="display:none">';
+# echo print_r($result);
+# echo '</pre>';
 
 ?>
 
 
-<p>Spatial Hierarchy: 
 
 
 <?php
 
 $api = $serviceLocator->get('Omeka\ApiManager');
+
+# any hierarchy returned? If not, skip.
+if(count($result)) {
+
+echo "<p>Spatial Hierarchy:";
 
 if ($result[0]['parent7_id']) {
 $response = $api->read('items', $result[0]['parent7_id']);
@@ -201,6 +205,8 @@ $response = $api->read('items', $result[0]['parent_id']);
 $itemRepresentation = $response->getContent();
 echo $itemRepresentation->link($itemRepresentation->title());
 }
-?></p>
+}
+echo "</p>";
+?>
 
 <?php $this->trigger('view.show.:after'); ?>
